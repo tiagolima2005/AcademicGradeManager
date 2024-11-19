@@ -1,0 +1,1 @@
+This is a academic grade manager program in C
