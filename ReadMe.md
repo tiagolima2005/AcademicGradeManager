@@ -1,1 +1,1 @@
-This is a academic grade manager program in C
+A simple program written in C to manage academic grades.
