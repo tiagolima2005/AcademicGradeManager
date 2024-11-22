@@ -13,7 +13,6 @@ struct Student
 };
 
 void add_students(struct Student *student);
-void add_grade(struct Student students[], int count);
 void list_students(struct Student students[], int count);
 
 int main()
@@ -37,10 +36,6 @@ int main()
         {
         case 1:
             add_students(&student);
-            break;
-
-        case 2:
-            /* code */
             break;
 
         default:
