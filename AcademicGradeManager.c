@@ -8,9 +8,13 @@ struct Student
     int year;
     char class;
     int number;
+    int grades[10];
+    int grade_count;
 };
 
 void add_students(struct Student *student);
+void add_grade(struct Student students[], int count);
+void list_students(struct Student students[], int count);
 
 int main()
 {
@@ -33,6 +37,10 @@ int main()
         {
         case 1:
             add_students(&student);
+            break;
+
+        case 2:
+            /* code */
             break;
 
         default:
@@ -59,4 +67,18 @@ void add_students(struct Student *student)
 
     printf("Insert the student's number/id:\n");
     scanf("%d", &student->number);
+}
+
+void list_students(struct Student students[], int count)
+{
+    if (count == 0)
+    {
+        printf("No students available.\n");
+        return;
+    }
+
+    for (int i = 0; i < count; i++)
+    {
+        printf("%d - %s (ID: %d, Class: %c)\n", i + 1, students[i].name, students[i].number, students[i].class);
+    }
 }
