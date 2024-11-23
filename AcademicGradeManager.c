@@ -89,4 +89,30 @@ void add_grade(struct Student students[], int count)
 
     printf("Choose a student to add a grade:\n");
     list_students(students, count);
+
+    int choice;
+    printf("Enter the student number:\n");
+    scanf("%d" , &choice);
+    getchar();
+
+    if (choice < 1 || choice > count)
+    {
+        printf("Invalid choice.\n");
+        return;
+    }
+
+    struct Student *selected_student = &students[choice - 1];
+
+    if (selected_student->grade_count >= 10)
+    {
+        printf("This student already has the maximum number of grades.\n");
+        return;
+    }
+
+    int new_grade;
+    printf("Enter the grade to add:\n");
+    scanf("%d" , &new_grade);
+    getchar();
+
+    
 }
