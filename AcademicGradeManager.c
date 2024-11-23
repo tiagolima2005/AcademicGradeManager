@@ -12,14 +12,15 @@ struct Student
     int grade_count;
 };
 
-void add_students(struct Student *student);
+void add_students(struct Student students[], int *count);
 void list_students(struct Student students[], int count);
 void add_grade(struct Student students[], int count);
 
 int main()
 {
     int option;
-    struct Student student;
+    struct Student students[100];
+    int student_count = 0;
 
     do
     {
@@ -27,42 +28,62 @@ int main()
         printf("Type the number of the function you wish to use:\n");
         printf("1 - Add Students\n");
         printf("2 - Add Grades to a Student\n");
-        printf("3 - Calculate the average grade\n");
-        printf("4 - See passed and failed students\n");
-        printf("5 - Exit program\n");
+        printf("3 - List all Students\n");
+        printf("4 - Show all students grades\n");
+        printf("5 - Calculate the average grade\n");
+        printf("6 - See passed and failed students\n");
+        printf("7 - Exit program\n");
         scanf("%d", &option);
         getchar();
 
         switch (option)
         {
         case 1:
-            add_students(&student);
+            add_students(students, &student_count);
             break;
-        
+
+        case 2:
+            add_grade(students, student_count);
+            break;
+
         default:
             break;
         }
-    } while (option != 5);
+    } while (option != 7);
 
     return 0;
 }
 
-void add_students(struct Student *student)
+void add_students(struct Student students[], int *count)
 {
+    if (*count >= 100)
+    {
+        printf("Maximum number of students reached.\n");
+        return;
+    }
+
+    struct Student *new_student = &students[*count];
+
     printf("Insert the student's name:\n");
-    fgets(student->name, sizeof(student->name), stdin);
-    student->name[strcspn(student->name, "\n")] = '\0';
+    fgets(new_student->name, sizeof(new_student->name), stdin);
+    new_student->name[strcspn(new_student->name, "\n")] = '\0';
 
     printf("Insert the student's year:\n");
-    scanf("%d", &student->year);
+    scanf("%d", &new_student->year);
     getchar();
 
     printf("Insert the student's class:\n");
-    scanf(" %c", &student->class);
+    scanf(" %c", &new_student->class);
     getchar();
 
     printf("Insert the student's number/id:\n");
-    scanf("%d", &student->number);
+    scanf("%d", &new_student->number);
+    getchar();
+
+    new_student->grade_count = 0; // Inicializa o contador de notas
+    (*count)++;
+
+    printf("Student added successfully!\n");
 }
 
 void list_students(struct Student students[], int count)
