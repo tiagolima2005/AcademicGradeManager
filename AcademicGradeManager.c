@@ -38,7 +38,7 @@ int main()
         case 1:
             add_students(&student);
             break;
-
+        
         default:
             break;
         }
@@ -92,7 +92,7 @@ void add_grade(struct Student students[], int count)
 
     int choice;
     printf("Enter the student number:\n");
-    scanf("%d" , &choice);
+    scanf("%d", &choice);
     getchar();
 
     if (choice < 1 || choice > count)
@@ -111,8 +111,15 @@ void add_grade(struct Student students[], int count)
 
     int new_grade;
     printf("Enter the grade to add:\n");
-    scanf("%d" , &new_grade);
+    scanf("%d", &new_grade);
     getchar();
 
-    
+    if (new_grade < 0 || new_grade > 100)
+    {
+        printf("Invalid grade. Please enter a value between 0 and 100.\n");
+        return;
+    }
+
+    selected_student->grades[selected_student->grade_count++] = new_grade;
+    printf("Grade added successfully to %s.\n", selected_student->name);
 }
