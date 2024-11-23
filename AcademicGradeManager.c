@@ -14,6 +14,7 @@ struct Student
 
 void add_students(struct Student *student);
 void list_students(struct Student students[], int count);
+void add_grade(struct Student students[], int count);
 
 int main()
 {
@@ -76,4 +77,16 @@ void list_students(struct Student students[], int count)
     {
         printf("%d - %s (ID: %d, Class: %c)\n", i + 1, students[i].name, students[i].number, students[i].class);
     }
+}
+
+void add_grade(struct Student students[], int count)
+{
+    if (count == 0)
+    {
+        printf("No students available. Please add students first.\n");
+        return;
+    }
+
+    printf("Choose a student to add a grade:\n");
+    list_students(students, count);
 }
