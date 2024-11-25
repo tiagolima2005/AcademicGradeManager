@@ -4,13 +4,13 @@
 // Definition of the Student structure
 struct Student
 {
-    char name[100];          // Student's name (up to 99 characters + null terminator)
-    char birth_date[11];     // Student's birth date in "dd/mm/yyyy" format
-    int year;                // Year the student is in
-    char class;              // Class of the student (e.g., A, B, etc.)
-    int number;              // Student's ID number
-    int grades[10];          // Array to store up to 10 grades
-    int grade_count;         // Number of grades currently assigned to the student
+    char name[100];      // Student's name (up to 99 characters + null terminator)
+    char birth_date[11]; // Student's birth date in "dd/mm/yyyy" format
+    int year;            // Year the student is in
+    char class;          // Class of the student (e.g., A, B, etc.)
+    int number;          // Student's ID number
+    int grades[10];      // Array to store up to 10 grades
+    int grade_count;     // Number of grades currently assigned to the student
 };
 
 // Function prototypes
@@ -20,7 +20,7 @@ void add_grade(struct Student students[], int count);
 
 int main()
 {
-    int option; // Menu option chosen by the user
+    int option;                   // Menu option chosen by the user
     struct Student students[100]; // Array to store up to 100 students
     int student_count = 0;        // Counter for the number of students added
 
@@ -48,6 +48,10 @@ int main()
 
         case 2:
             add_grade(students, student_count); // Add a grade to a selected student
+            break;
+
+        case 3:
+            list_students(students, student_count);
             break;
 
         default:
@@ -87,7 +91,7 @@ void add_students(struct Student students[], int *count)
     getchar();
 
     new_student->grade_count = 0; // Initialize the grade counter for this student
-    (*count)++; // Increment the student counter
+    (*count)++;                   // Increment the student counter
 
     printf("Student added successfully!\n");
 }
