@@ -17,6 +17,7 @@ struct Student
 void add_students(struct Student students[], int *count);
 void list_students(struct Student students[], int count);
 void add_grade(struct Student students[], int count);
+void all_students_grades(struct Student students[], int count);
 
 int main()
 {
@@ -157,4 +158,18 @@ void add_grade(struct Student students[], int count)
     // Add the grade to the student's grades array and increment the grade counter
     selected_student->grades[selected_student->grade_count++] = new_grade;
     printf("Grade added successfully to %s.\n", selected_student->name);
+}
+
+void all_students_grades(struct Student students[], int count)
+{
+    if (count == 0)
+    {
+        printf("No students available.\n");
+        return; // If there are no students, inform the user
+    }
+
+    for (int i = 0; i < count; i++)
+    {
+        printf("%d - %s (ID: %d, Class: %c)\n", i + 1, students[i].name, students[i].number, students[i].class);
+    }
 }
