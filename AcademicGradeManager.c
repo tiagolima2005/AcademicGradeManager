@@ -28,7 +28,7 @@ int main()
     do
     {
         // Displaying the menu options
-        printf("Welcome to the Academic Grade Manager Program!\n");
+        printf("\nWelcome to the Academic Grade Manager Program!\n");
         printf("Type the number of the function you wish to use:\n");
         printf("1 - Add Students\n");
         printf("2 - Add Grades to a Student\n");
@@ -53,6 +53,10 @@ int main()
 
         case 3:
             list_students(students, student_count);
+            break;
+
+        case 4:
+            all_students_grades(students, student_count);
             break;
 
         default:
@@ -171,5 +175,19 @@ void all_students_grades(struct Student students[], int count)
     for (int i = 0; i < count; i++)
     {
         printf("%d - %s (ID: %d, Class: %c)\n", i + 1, students[i].name, students[i].number, students[i].class);
+
+        if (students[i].grade_count == 0)
+        {
+            printf("No grades available\n");
+        }
+        else
+        {
+            printf(" Grades: ");
+            for (int j = 0; j < students[i].grade_count; j++)
+            {
+                printf("%d ", students[i].grades[j]);
+            }
+            printf("\n");
+        }
     }
 }
