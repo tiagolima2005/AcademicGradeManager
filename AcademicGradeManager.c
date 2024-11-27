@@ -52,15 +52,15 @@ int main()
             break;
 
         case 3:
-            list_students(students, student_count);
+            list_students(students, student_count); // List all students
             break;
 
         case 4:
-            all_students_grades(students, student_count);
+            all_students_grades(students, student_count); // Show grades of all students
             break;
 
         default:
-            break;
+            break; // Do nothing for invalid options or other cases
         }
     } while (option != 7); // Exit loop when user chooses option 7
 
@@ -70,10 +70,10 @@ int main()
 // Function to add a new student
 void add_students(struct Student students[], int *count)
 {
-    if (*count >= 100)
+    if (*count >= 100) // Check if the student array is full
     {
         printf("Maximum number of students reached.\n");
-        return; // Prevent adding more students if the array is full
+        return;
     }
 
     struct Student *new_student = &students[*count]; // Pointer to the next available position in the array
@@ -85,7 +85,7 @@ void add_students(struct Student students[], int *count)
 
     printf("Insert the student's year:\n");
     scanf("%d", &new_student->year);
-    getchar();
+    getchar(); // Consume leftover newline character
 
     printf("Insert the student's class:\n");
     scanf(" %c", &new_student->class);
@@ -104,10 +104,10 @@ void add_students(struct Student students[], int *count)
 // Function to list all students
 void list_students(struct Student students[], int count)
 {
-    if (count == 0)
+    if (count == 0) // Check if there are no students
     {
         printf("No students available.\n");
-        return; // If there are no students, inform the user
+        return;
     }
 
     // Iterate through the student array and print their details
@@ -120,10 +120,10 @@ void list_students(struct Student students[], int count)
 // Function to add a grade to a student
 void add_grade(struct Student students[], int count)
 {
-    if (count == 0)
+    if (count == 0) // Check if there are no students
     {
         printf("No students available. Please add students first.\n");
-        return; // If there are no students, inform the user
+        return;
     }
 
     printf("Choose a student to add a grade:\n");
@@ -134,18 +134,18 @@ void add_grade(struct Student students[], int count)
     scanf("%d", &choice);
     getchar();
 
-    if (choice < 1 || choice > count)
+    if (choice < 1 || choice > count) // Validate the student's choice
     {
         printf("Invalid choice.\n");
-        return; // If the selected student number is invalid, inform the user
+        return;
     }
 
     struct Student *selected_student = &students[choice - 1]; // Pointer to the selected student
 
-    if (selected_student->grade_count >= 10)
+    if (selected_student->grade_count >= 10) // Check if the student already has the maximum grades
     {
         printf("This student already has the maximum number of grades.\n");
-        return; // If the student already has 10 grades, prevent adding more
+        return;
     }
 
     int new_grade;
@@ -153,10 +153,10 @@ void add_grade(struct Student students[], int count)
     scanf("%d", &new_grade);
     getchar();
 
-    if (new_grade < 0 || new_grade > 100)
+    if (new_grade < 0 || new_grade > 100) // Validate the grade value
     {
         printf("Invalid grade. Please enter a value between 0 and 100.\n");
-        return; // If the entered grade is invalid, reject it
+        return;
     }
 
     // Add the grade to the student's grades array and increment the grade counter
@@ -164,26 +164,28 @@ void add_grade(struct Student students[], int count)
     printf("Grade added successfully to %s.\n", selected_student->name);
 }
 
+// Function to display all students' grades
 void all_students_grades(struct Student students[], int count)
 {
-    if (count == 0)
+    if (count == 0) // Check if there are no students
     {
         printf("No students available.\n");
-        return; // If there are no students, inform the user
+        return;
     }
 
+    // Iterate through all students
     for (int i = 0; i < count; i++)
     {
         printf("%d - %s (ID: %d, Class: %c)\n", i + 1, students[i].name, students[i].number, students[i].class);
 
-        if (students[i].grade_count == 0)
+        if (students[i].grade_count == 0) // Check if the student has no grades
         {
-            printf("No grades available\n");
+            printf("   No grades available\n");
         }
         else
         {
-            printf(" Grades: ");
-            for (int j = 0; j < students[i].grade_count; j++)
+            printf("   Grades: ");
+            for (int j = 0; j < students[i].grade_count; j++) // Print all grades of the student
             {
                 printf("%d ", students[i].grades[j]);
             }
